@@ -1,19 +1,25 @@
 <?php 
 function uniq_first_letters(string $str){
+
 	// Разбиваем строку на отдельные слова
 	$arr_of_string = explode(' ',$str);
+	
 	// Массив для первых букв слов
 	$first_letters = array();
+	
 	// Берем первые буквы слов (preg_split берет первые буквы, mb_strtolower переносит их в нижний регистр)
 	for ($x = 0; $x < count($arr_of_string); $x++ ){
 		$first_letters[$x] = mb_strtolower(preg_split('//u', $arr_of_string[$x], null, PREG_SPLIT_NO_EMPTY)[0]);
 	};
+	
 	// Убираем повторяющиеся буквы
 	$first_letters = array_unique($first_letters, $flags = SORT_STRING);
+	
 	// Сортируем массив по возрастанию
 	sort($first_letters);
 	return $first_letters;
 };
+
 $uniq_first_latters_array = 
 uniq_first_letters('Если ты будешь злиться на меня каждый раз, когда я делаю глупость, мне придется прекратить делать глупости');
  print_r($uniq_first_latters_array);
