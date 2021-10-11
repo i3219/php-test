@@ -1,0 +1,20 @@
+<?php
+function find_time(Float $degree){
+
+	// Выделим неполный оборот стрелки
+	$degree -= 360 * floor($degree / 360);
+  
+	// Найдем кол-во полных секунд, прошедших за данный оборот  
+	$seconds_value = (int)($degree / (360 / 12 / 60 / 60));
+  
+	// Переведем в часы, минуты и секунды
+	$time_value["часы"] = floor($seconds_value / 3600);
+	$time_value["минуты"] = floor(($seconds_value % 3600) / 60);
+	$time_value["секунды"] = $seconds_value % 60;
+  
+	if ($time_value["часы"] == 0) {$time_value["часы"] = 12;};
+	return $time_value;
+};
+
+print_r(find_time('21.1'));
+?>
